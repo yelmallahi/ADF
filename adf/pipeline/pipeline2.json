@@ -26,6 +26,9 @@
 							"type": "DelimitedTextReadSettings"
 						}
 					},
+					"sink": {
+						"type": "SqlServerSink"
+					},
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
@@ -33,30 +36,51 @@
 							{
 								"source": {
 									"name": "Name",
-									"type": "String"
+									"type": "String",
+									"physicalType": "String"
 								},
 								"sink": {
 									"name": "Name",
-									"type": "String"
+									"type": "String",
+									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
 									"name": "email",
-									"type": "String"
+									"type": "String",
+									"physicalType": "String"
 								},
 								"sink": {
 									"name": "Email",
-									"type": "String"
+									"type": "String",
+									"physicalType": "nvarchar"
 								}
 							}
-						]
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
 					}
 				},
 				"inputs": [
 					{
 						"referenceName": "DelimitedText",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": "EleonoreADFTraining.xls"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SqlServerTable",
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": "YassineSqlTable"
+						}
 					}
 				]
 			}

@@ -8,6 +8,10 @@
 		"parameters": {
 			"FileName": {
 				"type": "string"
+			},
+			"ColumnDelimiter": {
+				"type": "string",
+				"defaultValue": ";"
 			}
 		},
 		"annotations": [],
@@ -21,7 +25,10 @@
 				},
 				"container": "training"
 			},
-			"columnDelimiter": ";",
+			"columnDelimiter": {
+				"value": "@dataset().ColumnDelimiter",
+				"type": "Expression"
+			},
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": ""

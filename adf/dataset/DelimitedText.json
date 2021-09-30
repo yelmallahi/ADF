@@ -18,6 +18,15 @@
 			"firstRowAsHeader": true,
 			"quoteChar": ""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": "email",
+				"type": "String"
+			}
+		]
 	}
 }

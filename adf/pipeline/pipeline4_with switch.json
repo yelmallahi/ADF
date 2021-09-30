@@ -5,7 +5,14 @@
 			{
 				"name": "Execute Pipeline Julien",
 				"type": "ExecutePipeline",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Switch1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -42,8 +49,39 @@
 						"Name": "Karim"
 					}
 				}
+			},
+			{
+				"name": "Switch1",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"cases": [
+						{
+							"value": "Case1"
+						}
+					],
+					"defaultActivities": [
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "switchDefaultName",
+								"value": "Yassine"
+							}
+						}
+					]
+				}
 			}
 		],
+		"variables": {
+			"switchDefaultName": {
+				"type": "String",
+				"defaultValue": "Yassine"
+			}
+		},
 		"annotations": []
 	}
 }

@@ -89,7 +89,7 @@
 				"typeProperties": {
 					"variableName": "FileName",
 					"value": {
-						"value": "@{pipeline().parameters.Name}_{formatDateTime(utcnow(), 'yyyyddMM')}_{pipeline().DataFactory}",
+						"value": "@{pipeline().parameters.Name}_@{formatDateTime(utcnow(), 'yyyyddMM')}_@{pipeline().DataFactory}.csv",
 						"type": "Expression"
 					}
 				}

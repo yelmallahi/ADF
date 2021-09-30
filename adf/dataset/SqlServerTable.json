@@ -16,7 +16,16 @@
 		},
 		"annotations": [],
 		"type": "SqlServerTable",
-		"schema": [],
+		"schema": [
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Email",
+				"type": "nvarchar"
+			}
+		],
 		"typeProperties": {
 			"schema": {
 				"value": "@dataset().Schema",

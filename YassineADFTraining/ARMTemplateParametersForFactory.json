@@ -10,6 +10,12 @@
 		},
 		"SqlServer_connectionString": {
 			"value": ""
+		},
+		"trigger_scheduled_every_1_min_properties_pipeline3_trigger_parameters_SourceFileName": {
+			"value": "adfTrainingcsv.csv"
+		},
+		"trigger_scheduled_every_1_min_properties_pipeline3_trigger_parameters_Name": {
+			"value": "Yassine"
 		}
 	}
 }

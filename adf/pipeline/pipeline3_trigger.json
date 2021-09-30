@@ -1,0 +1,113 @@
+{
+	"name": "pipeline3_trigger",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DelimitedText",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@pipeline().parameters.SourceFileName",
+								"type": "Expression"
+							},
+							"ColumnDelimiter": ";"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DelimitedText",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@variables('FileName')",
+								"type": "Expression"
+							},
+							"ColumnDelimiter": ";"
+						}
+					}
+				]
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "FileName",
+					"value": {
+						"value": "@{pipeline().parameters.Name}_@{formatDateTime(utcnow(), 'yyyyddMM')}_@{pipeline().DataFactory}.csv",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"SourceFileName": {
+				"type": "string"
+			},
+			"Name": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"FileName": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}

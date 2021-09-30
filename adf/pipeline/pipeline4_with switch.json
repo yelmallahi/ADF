@@ -22,7 +22,10 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"SourceFileName": "JulienADFTrainingcsv.csv",
-						"Name": "Julien"
+						"Name": {
+							"value": "@variables('switchDefaultName')",
+							"type": "Expression"
+						}
 					}
 				}
 			},
@@ -46,7 +49,10 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"SourceFileName": "KarimTrainingcsv.csv",
-						"Name": "Karim"
+						"Name": {
+							"value": "@variables('switchDefaultName')",
+							"type": "Expression"
+						}
 					}
 				}
 			},

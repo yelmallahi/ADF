@@ -36,14 +36,14 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "Name",
+									"name": "name",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
 									"name": "Name",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -53,9 +53,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "email",
+									"name": "Email",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							}
 						],
@@ -69,13 +69,20 @@
 				"inputs": [
 					{
 						"referenceName": "DelimitedText",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": "oumaymaTrainingcsv.csv"
+						}
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "SqlServerTable",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": "Julien",
+							"Schema": "dbo"
+						}
 					}
 				]
 			}
